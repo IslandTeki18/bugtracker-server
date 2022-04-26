@@ -5,8 +5,8 @@ import {
   postNewUser,
   putUpdateUser,
   getUserInfo,
-} from "../services/userController.js";
-import { admin, protect } from "../middleware/authMiddleware.js";
+} from "../services/user.service.js";
+import { admin, protect } from "../middleware/auth.middleware.js";
 
 router.route("/").post(getAuthUser);
 router.route("/register").post(postNewUser);

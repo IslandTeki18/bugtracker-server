@@ -9,8 +9,8 @@ import {
   postCreateBugNote,
   deleteBugNoteById,
   putBugNoteById,
-} from "../controllers/bugController.js";
-import { admin, protect } from "../middleware/authMiddleware.js";
+} from "../services/bug.service.js";
+import { admin, protect } from "../middleware/auth.middleware.js";
 
 router.route("/").get(protect, getUserBugs).post(protect, postCreateBug);
 router

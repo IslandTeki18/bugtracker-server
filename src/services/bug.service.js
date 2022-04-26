@@ -1,5 +1,5 @@
 import asyncHandler from "express-async-handler";
-import Bug from "../models/bugModel.js";
+import Bug from "../models/bug.model.js";
 
 //@desc     Get all user bugs
 //@route    GET /api/bugs

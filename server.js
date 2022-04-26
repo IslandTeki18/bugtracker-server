@@ -2,10 +2,10 @@ import express from "express";
 import path from "path";
 import dotenv from "dotenv";
 import connectDB from "./src/config/db.js";
-import { notFound, errorHandler } from "./src/middleware/errorMiddleware";
+import { notFound, errorHandler } from "./src/middleware/error.middleware";
 // Imported routes
-import userRoutes from "./src/api/userRoutes.js";
-import bugRoutes from "./src/api/bugRoutes.js";
+import userApi from "./src/api/user.api.js";
+import bugApi from "./src/api/bug.api.js";
 
 dotenv.config();
 const app = express();
@@ -13,21 +13,12 @@ app.use(express.json());
 connectDB();
 
 // app.use routes
-app.use("/api/users", userRoutes);
-app.use("/api/bugs", bugRoutes);
+app.use("/api/users", userApi);
+app.use("/api/bugs", bugApi);
 
-const __dirname = path.resolve();
-if (process.env.NODE_ENV === "production") {
-  app.use(express.static(path.join(__dirname, "/frontend/build")));
-
-  app.get("*", (req, res) =>
-    res.sendFile(path.resolve(__dirname, "frontend", "build", "index.html"))
-  );
-} else {
-  app.get("/", (req, res) => {
-    res.send("API is running");
-  });
-}
+app.get("/", (req, res) => {
+  res.send("API is running");
+});
 
 app.use(notFound);
 app.use(errorHandler);
