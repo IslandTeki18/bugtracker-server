@@ -2,7 +2,7 @@ import express from "express";
 import path from "path";
 import dotenv from "dotenv";
 import connectDB from "./src/config/db.js";
-import { notFound, errorHandler } from "./src/middleware/error.middleware";
+import { notFound, errorHandler } from "./src/middleware/error.middleware.js";
 // Imported routes
 import userApi from "./src/api/user.api.js";
 import bugApi from "./src/api/bug.api.js";
