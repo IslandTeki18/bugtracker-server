@@ -47,7 +47,7 @@ const postCreateBug = asyncHandler(async (req, res) => {
   });
 
   await bug.save();
-  res.status(201).json(bug);
+  res.status(200).json(bug);
 });
 
 //@desc     Get bug details by ID
@@ -86,19 +86,19 @@ const putBugById = asyncHandler(async (req, res) => {
   const bug = await Bug.findById(req.params.id);
 
   if (bug) {
-    bug.title = title;
-    bug.project = project;
-    bug.type = type;
-    bug.reproSteps = reproSteps;
-    bug.desc = desc;
-    bug.status = status;
-    bug.assignmentTo = assignmentTo;
-    bug.priority = priority;
-    bug.severity = severity;
-    bug.originalEstimate = originalEstimate;
-    bug.remaining = remaining;
-    bug.hoursSpent = hoursSpent;
-    bug.levelOfEffort = levelOfEffort;
+    bug.title = title || bug.title;
+    bug.project = project || bug.project;
+    bug.type = type || bug.type;
+    bug.reproSteps = reproSteps || bug.reproSteps;
+    bug.desc = desc || bug.desc;
+    bug.status = status || bug.status;
+    bug.assignmentTo = assignmentTo || bug.assignmentTo;
+    bug.priority = priority || bug.priority;
+    bug.severity = severity || bug.severity;
+    bug.originalEstimate = originalEstimate || bug.originalEstimate;
+    bug.remaining = remaining || bug.remaining;
+    bug.hoursSpent = hoursSpent || bug.hoursSpent;
+    bug.levelOfEffort = levelOfEffort || bug.levelOfEffort;
 
     const updatedBug = await bug.save();
     res.json(updatedBug);
