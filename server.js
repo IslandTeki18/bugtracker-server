@@ -1,5 +1,6 @@
 import express from "express";
 import dotenv from "dotenv";
+import cors from "cors"
 import connectDB from "./src/config/db.js";
 import { notFound, errorHandler } from "./src/middleware/error.middleware.js";
 // Imported routes
@@ -9,6 +10,7 @@ import bugApi from "./src/api/bug.api.js";
 dotenv.config();
 const app = express();
 app.use(express.json());
+app.use(cors())
 connectDB();
 
 // app.use routes
